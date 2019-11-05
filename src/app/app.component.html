@@ -1,0 +1,7 @@
+<button routerLink="/">Trang chủ</button>
+<button routerLink="setting">Cài đặt</button>
+<button [routerLink]="['post']">Posts</button>
+<router-outlet></router-outlet>
+<br>
+<span>bây giờ là {{date }}</span>
+<div>{{date | date:"short"}}</div>

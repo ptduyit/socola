@@ -1,0 +1,51 @@
+<form
+  name="form"
+  (ngSubmit)="loginForm.form.valid && onSubmit(loginForm.value)"
+  #loginForm="ngForm"
+  novalidate
+>
+  <label for="email">Email</label>
+  <div>
+    <input
+      type="text"
+      class="form-control"
+      ngModel
+      #var_email="ngModel"
+      name="email"
+      [ngClass]="{ 'is-invalid': loginForm.submitted && var_email.invalid }"
+      required
+      email
+    />
+    <div
+      *ngIf="loginForm.submitted && var_email.invalid"
+      class="invalid-feedback"
+    >
+      <div *ngIf="var_email?.errors.required">Không được để trống</div>
+      <div *ngIf="var_email?.errors.email">Phải nhập đúng định dạng email</div>
+    </div>
+  </div>
+  <label for="password">Mật khẩu</label>
+  <div>
+    <input
+      type="password"
+      class="form-control"
+      ngModel
+      #password="ngModel"
+      name="password"
+      [ngClass]="{ 'is-invalid': loginForm.submitted && password.invalid }"
+      required
+      minlength="6"
+    />
+    <div
+      *ngIf="loginForm.submitted && password.invalid"
+      class="invalid-feedback"
+    >
+      <div *ngIf="password?.errors.required">Không được để trống</div>
+      <div *ngIf="password?.errors.minlength">Mật khẩu tối thiểu 6 kí tự</div>
+    </div>
+  </div>
+  <div class="text-right">
+    <input type="submit" value="Đăng nhập" class="btn login_btn" />
+  </div>
+</form>
+<span>Chưa có mật khẩu?</span><a [routerLink]="['/register']">Đăng ký</a>

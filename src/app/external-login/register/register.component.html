@@ -1,0 +1,25 @@
+<form [formGroup]="registerForm" (ngSubmit)="submit()">
+  <label for="email">Email</label>
+  <div>
+    <input type="text" formControlName="email" />
+    <div *ngIf="submitted && registerForm.get('email').errors">
+      <div *ngIf="registerForm.get('email').hasError('required')">
+        Không được để trống
+      </div>
+      <div *ngIf="registerForm.get('email').hasError('email')">
+        Nhập sai định dạng email
+      </div>
+    </div>
+  </div>
+  <label for="password">Password</label>
+  <div>
+    <input type="password" formControlName="password" />
+    <div *ngIf="registerForm.get('password').errors && submitted">
+      <div *ngIf="registerForm.get('password').hasError('required')">
+        Không được để trống
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-success" type="submit">Đăng ký</button>
+</form>
+<span>Đã có tài khoản? </span><a [routerLink]="['/login']">Đăng nhập</a>
